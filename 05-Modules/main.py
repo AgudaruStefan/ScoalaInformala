@@ -75,5 +75,12 @@
 
 try:
     valoare = int(input("Prima cifra din cnp: "))
-except ValueError:
-    print("Ai introdus o litera in loc de cifra")
+    lista = [1]
+    print('sunt in try')
+except (TypeError, ValueError, AttributeError, ZeroDivisionError):
+    print("Tip de eroare")
+else:
+    print("nu exista exceptie")
+finally:
+    print("se executa oricum")
+print("am iesit din try-except")
