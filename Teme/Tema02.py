@@ -1,3 +1,5 @@
+# 1:
+
 def functie(*args):
     sum_1 = 0
     for i in args:
@@ -7,6 +9,13 @@ def functie(*args):
     print(sum_1)
 
 
+# 2:
+def functie_0():
+    return 0
+print(functie_0())
+
+
+# 3:
 def functie_2(*args, param_a):
     sum_2 = 0
     for i in args:
@@ -19,7 +28,7 @@ def functie_2(*args, param_a):
 
     print(sum_2)
 
-
+# 4:
 def functie_3():
     numar_introdus = input("Introduceti o valoare: ")
     valoare = numar_introdus
