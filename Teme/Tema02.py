@@ -1,18 +1,34 @@
-def Functie(a=1, b=5, c=-3):
+def functie(*args):
+    sum_1 = 0
+    for i in args:
+        if type(i) == int:
+            sum_1 = sum_1 + i
 
-    return "3 (1 + 5 - 3)"
+    print(sum_1)
 
-print(Functie())
 
-def Functie(a=0, b=0):
-    return a + b
+def functie_2(*args, param_a):
+    sum_2 = 0
+    for i in args:
+        try:
+            sum_2 = sum_2 + int(i)
+        except ValueError:
+            pass
+        except TypeError:
+            pass
 
-sum = Functie()
+    print(sum_2)
 
-print(sum)
 
-def Functie(a=1, b=5, c=-3):
+def functie_3():
+    numar_introdus = input("Introduceti o valoare: ")
+    valoare = numar_introdus
+    if valoare.isnumeric():
+        print(valoare)
+    else:
+        print("0")
 
-    return "6 (2 + 4)"
 
-print(Functie())
+functie(1, 5, -3, 'abc', [12, 56, 'cad'])
+functie_2(2, 4, 'abc', param_a=2)
+print(functie_3())
