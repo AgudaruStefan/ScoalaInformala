@@ -1,4 +1,4 @@
-import random
+import datetime
 
 print("                                      ---Validator CNP--- ")
 
