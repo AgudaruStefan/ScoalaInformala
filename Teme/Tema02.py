@@ -7,7 +7,7 @@ def functie(*args):
             sum_1 = sum_1 + i
 
     print(sum_1)
-
+functie(1, 5, -3, 'abc', [12, 56, 'cad'])
 
 # 2:
 def functie_0():
@@ -27,7 +27,7 @@ def functie_2(*args, param_a):
             pass
 
     print(sum_2)
-
+functie_2(2, 4, 'abc', param_a=2)
 # 4:
 def functie_3():
     numar_introdus = input("Introduceti o valoare: ")
@@ -37,7 +37,4 @@ def functie_3():
     else:
         print("0")
 
-
-functie(1, 5, -3, 'abc', [12, 56, 'cad'])
-functie_2(2, 4, 'abc', param_a=2)
 print(functie_3())
