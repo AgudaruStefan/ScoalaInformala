@@ -1,94 +1,41 @@
-import datetime
-
-print("                                      ---Validator CNP--- ")
-
+import random
 def CNP():
-    global s, aa, ll, zz, jj, nnn, c, z
+    user_input = input("Introduceti CNP: ")
 
-    sexul = str(input("Introduceti sexul(masculin/feminin): "))
+    tup_1 = user_input[0]
+    tup_2 = user_input[1:3]
+    tup_3 = user_input[3:5]
+    tup_4 = user_input[5:7]
+    tup_5 = user_input[7:9]
+    tup_6 = user_input[9:12]
+    tup_7 = user_input[-1]
 
-    anul_nasterii = int(input("Introduceti ultimele 2 cifre in anul nasterii: "))
+    tup_1_verified = "1" <= tup_1 <= "9"
+    tup_2_verified = "00" <= tup_2 <= "99"
+    tup_3_verified = "01" <= tup_3 <= "12"
+    tup_4_verified = "01" <= tup_4 <= "31"
+    tup_5_verified = "01" <= tup_5 <= "51"
+    tup_6_verified = "001" <= tup_6 <= "999"
 
-    luna_nasterii = input("Introduceti luna nasterii(ex.01): ")
+    c_intup = 0
+    ex_numar = '279146358279'
+    for intup, anyin in enumerate(user_input[:12]):
+        c_intup += int(anyin) * int(ex_numar[intup])
+    c_intup = c_intup % 11
+    if c_intup == 10:
+        c_intup = 1
+    tup_7_verified = c_intup == int(tup_7)
 
-    ziua_nasterii = input("Introduceti ziua nasterii: ")
-
-    judetul_inp = input("Introduceti judetul in care v-ati nascut: ")
-
-    if sexul == "masculin":
-        s = 1
+    if len(user_input) == 13 \
+            and tup_1_verified \
+            and tup_2_verified \
+            and tup_3_verified \
+            and tup_4_verified \
+            and tup_5_verified \
+            and tup_6_verified \
+            and tup_7_verified:
+        print("CNP-ul introdus este valid!")
     else:
-        s = 2
-
-    if 00 <= int(anul_nasterii) <= 99:
-        aa = anul_nasterii
-
-    if 1 <= int(luna_nasterii) <= 12:
-        ll = luna_nasterii
-
-    if 1 <= int(ziua_nasterii) <= 31:
-        zz = ziua_nasterii
-
-    Judet = {1: "alba",
-             2: "arad",
-             3: "arges",
-             4: "bacau",
-             5: "bihor",
-             6: "bistrita-nasaud",
-             7: "botosani",
-             8: "brasov",
-             9: "braila",
-             10: "buzau",
-             11: "caras-severin",
-             12: "cluj",
-             13: "constanta",
-             14: "covasna",
-             15: "dambovita",
-             16: "dolj",
-             17: "galati",
-             18: "gorj",
-             19: "harghita",
-             20: "hunedoara",
-             21: "ialomita",
-             22: "iasi",
-             23: "ilfov",
-             24: "maramures",
-             25: "mehedinti",
-             26: "mures",
-             27: "neamt",
-             28: "olt",
-             29: "prahova",
-             30: "satu mare",
-             31: "salaj",
-             32: "sibiu",
-             33: "suceava",
-             34: "teleorman",
-             35: "timis",
-             36: "tulcea",
-             37: "vaslui",
-             38: "valcea",
-             39: "vrancea",
-             40: "bucuresti",
-             41: "bucuresti s.1",
-             42: "bucuresti s.2",
-             43: "bucuresti s.3",
-             44: "bucuresti s.4",
-             45: "bucuresti s.5",
-             46: "bucuresti s.6",
-             51: "calarasi",
-             52: "giurgiu"}
-
-    Judet_key = Judet
-    Judet_listin = list(Judet_key)
-    Judet_valori = Judet.values()
-    Judet_lista = list(Judet_valori)
-
-    if judetul_inp in Judet_lista:
-        index = Judet_lista.index(judet)
-        jj = Judet_listin[index]
+        print("CNP-ul introdus este invalid")
 
 CNP()
-
-
-
-
