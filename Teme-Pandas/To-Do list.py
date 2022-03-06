@@ -1,53 +1,57 @@
 import pandas as pd
 import csv
-def CategorieTask():
-    Categ_Task_1 = input("Introduceti prima categorie de taskuri: ")
-    Categ_Task_2 = input("Introduceti a 2 a categorie de taskuri: ")
-    Categ_Task_3 = input("Introduceti a 3 a categorie de taskuri: ")
-    Categ_Task_4 = input("Introduceti a 4 a categorie de taskuri: ")
+import datetime
 
-    lista_categorii_task = [{Categ_Task_1}, {Categ_Task_2}, {Categ_Task_3}, {Categ_Task_4}]
+def makeCateg():
+    sequentz = True
+    while sequentz:
+        firstQ = input('Doriti sa introduceti o categorie(y/n): ')
+        if firstQ.lower() != "n":
+            lista_categorii_task = [[input("Introduceti categoria: ")]]
+            with open('datacategorii.csv', 'a') as csv_file:
+                csv_writer = csv.writer(csv_file, delimiter=',')
+                for categorie in lista_categorii_task:
+                    csv_writer.writerow(categorie)
+        elif firstQ.lower() == "n":
+            sequentz = False
 
-    with open('to-do-categ.csv', 'a') as csv_file:
-        csv_writer = csv.writer(csv_file, delimiter=',')
-        for Catergorie in lista_categorii_task:
-            csv_writer.writerow(Catergorie)
+def TaskOK(task):
+    with open("cerinte.txt", "r") as file:
+        for line in file.readlines():
+            if task in line:
+                print("Task ul este deja introdus!")
+                return False
+        return True
 
-    pd_variavbila = pd.Series(lista_categorii_task)
+def taskinCateg():
+    inputForTask = input("Doriti sa introduceti un nou(y/n): ")
+    while inputForTask != 'n':
+        with open("cerinte.txt", "w,r") as file:
+            task = input("Introduceti taskul: ")
+            if TaskOK(task) == False:
+                break
 
-    if Categ_Task_1 == Categ_Task_2:
-        print("Categoriile trebuie sa fie diferite!")
-    elif Categ_Task_1 == Categ_Task_3:
-        print("Categoriile trebuie sa fie diferite!")
-    elif Categ_Task_1 == Categ_Task_4:
-        print("Categoriile trebuie sa fie diferite!")
-    elif Categ_Task_2 == Categ_Task_3:
-        print("Categoriile trebuie sa fie diferite!")
-    elif Categ_Task_2 == Categ_Task_4:
-        print("Categoriile trebuie sa fie diferite!")
-    elif Categ_Task_3 == Categ_Task_4:
-        print("Categoriile trebuie sa fie diferite!")
-    else:
-        return pd_variavbila
+            datalimita = input("Introduceti data limita task ului introdus: ")
+            try:
+                datetime.datetime.strptime(datalimita, "%d.%m.%Y")
+            except ValueError as e:
+                print('Data invalida!', e)
+                break
 
-def Cerinte():
-    Cerinte = input("Doriti sa introduceti elemente in categorie?(1/0-->{DA/NU}): ")
-    while Cerinte == 1:
-        inputtask = input("Introduceti task: ")
-        data_limita = str(input("Introduceti data limita task: "))
-        presoana_responsabila = input("Introduceti persoana responsabila: ")
+            oralimita = input("Introduceti ora limita task ului introdus: ")
+            try:
+                datetime.datetime.strptime(oralimita, "%H:%M")
+            except ValueError as e:
+                print('Ora invalida!', e)
+                break
 
-        dictrionar_cerinte = {
-            "Tasks": [{inputtask}],
-            "Deadline": [{data_limita}]
-        }
-        pd_cerince = pd.DataFrame(dictrionar_cerinte, index=[presoana_responsabila])
-        print(pd_cerince)
+            responsabilTask = input("Introduceti numele persoanei resposabile cu task ul introdus: ")
 
-Start = input("Doriti sa creati un To-Do list?(y/n): ")
-if Start == "y":
-    CategorieTask()
-    Cerinte()
-else:
-    print("La revedere!")
+            categfortask = input("Introduceti categoria aferenta task ului introdus: ")
 
+            file.write(task)
+            file.write(datalimita)
+            file.write(oralimita)
+            file.write(responsabilTask)
+            file.write(categfortask)
+            
