@@ -1,10 +1,10 @@
-# def my_function(*param_1):
-#     print(type(param_1))
-#     return param_1
-#
-#
-#
-# print(my_function("string", "string1", "string2"))
+def my_function(*param_1):
+    print(type(param_1))
+    return param_1
+
+
+
+print(my_function("string", "string1", "string2"))
 
 # def numbers_sum(param1, *var):
 #     suma = 0
@@ -24,7 +24,7 @@
 
 
 
-def catalog(**kwargs):
-    return kwargs.keys()
-
-print(catalog(nume="Popa", prenume="Ionut", varsta="12"))
+# def catalog(**kwargs):
+#     return kwargs.keys()
+#
+# print(catalog(nume="Popa", prenume="Ionut", varsta="12"))
