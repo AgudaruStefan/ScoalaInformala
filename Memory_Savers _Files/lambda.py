@@ -8,7 +8,6 @@
 # my_dif = diferenta(4, 3)
 # print(my_dif)
 
-
 players = [{
     "first_name": "Ion",
     "last_name": "Gheorhe",
@@ -19,7 +18,6 @@ players = [{
     "varsta": 35
 
 }, {
-
     "first_name": "Isabela",
     "last_name": "Enache",
     "varsta": 25

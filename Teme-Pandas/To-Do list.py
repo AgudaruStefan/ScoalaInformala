@@ -1,4 +1,3 @@
-import pandas as pd
 import csv
 import datetime
 
@@ -24,9 +23,9 @@ def TaskOK(task):
         return True
 
 def taskinCateg():
-    inputForTask = input("Doriti sa introduceti un nou(y/n): ")
+    inputForTask = input("Doriti sa introduceti un task nou?(y/n): ")
     while inputForTask != 'n':
-        with open("cerinte.txt", "w,r") as file:
+        with open("cerinte.txt", "a") as file:
             task = input("Introduceti taskul: ")
             if TaskOK(task) == False:
                 break
@@ -50,8 +49,81 @@ def taskinCateg():
             categfortask = input("Introduceti categoria aferenta task ului introdus: ")
 
             file.write(task)
+            file.write(", ")
             file.write(datalimita)
+            file.write(", ")
             file.write(oralimita)
+            file.write(", ")
             file.write(responsabilTask)
+            file.write(", ")
             file.write(categfortask)
-            
+
+            inputForTask = input("Doriti sa introduceti un task nou?(y/n): ")
+            if inputForTask == "y":
+                file.write("\n")
+
+def listare_date():
+    with open("cerinte.txt", "r") as file:
+        citire = file.readlines()
+
+        for i in sorted(citire, key=lambda i: i.split(",")[3]):
+            print(i)
+
+
+def asc_data():
+    with open("cerinte.txt", "r") as file:
+        for line in file:
+            data = line.split('|')
+            sorted_data = sorted(data, key=lambda line: line[1],)
+            print(sorted_data)
+
+def desc_data():
+    with open("cerinte.txt", "r") as file:
+        for line in file:
+            data = line.split('|')
+            sorted_data = sorted(data, key=lambda line: line[1], reverse=True)
+            print(sorted_data)
+
+
+def asc_responsabil():
+    with open("cerinte.txt", "r") as file:
+        citire = file.readlines()
+
+        for i in sorted(citire, key=lambda i: i.split(",")[2]):
+            print(i)
+
+def desc_responsabil():
+    with open("cerinte.txt", "r") as file:
+        citire = file.readlines()
+
+        for i in sorted(citire, key=lambda i: i.split(",")[2], reverse=True):
+            print(i)
+
+def Menu():
+    print("0.Iesire\n")
+    print("1.Listare date\n")
+    print("2.Creare categorie\n")
+    print("3.Creare task\n")
+    print("4.Sortare ascendentă data\n")
+    print("5.Sortare descendentă data\n")
+    print("6.Sortare ascendentă persoana responsabila\n")
+    print("7.Sortare descendentă persoana responsabila\n")
+
+    actiuni = {
+        "0": exit,
+        "1": listare_date,
+        "2": makeCateg,
+        "3": taskinCateg,
+        "4": asc_data,
+        "5": desc_data,
+        "6": asc_responsabil,
+        "7": desc_responsabil,
+    }
+
+    numMenu = "8"
+
+    while numMenu != "0":
+        numMenu = input("Introduceti numarul operatiei: ")
+        actiuni[numMenu]()
+
+Menu()

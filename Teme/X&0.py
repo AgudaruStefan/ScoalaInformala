@@ -1,12 +1,12 @@
 import random
 
-Start = input("Vrei sa incepi jocul? 'y/n' ")
+Start = input("Vrei sa incepi jocul? '1/2' ")
 
 board = ["-", "-", "-",
         "-", "-", "-",
         "-", "-", "-"]
 
-if Start == "y":
+if Start == 1:
     currentPlayer = "X"
     winner = None
     gameRunning = True
