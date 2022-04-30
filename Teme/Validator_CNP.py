@@ -53,3 +53,4 @@ def CNP():
         print("CNP-ul introdus este invalid!")
 
 CNP()
+
